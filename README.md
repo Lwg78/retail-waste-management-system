@@ -42,6 +42,28 @@ Supermarkets face a "Perishable Inventory" dilemma:
     * Legacy Stockouts vs. AI Simulated Stockouts.
 * **Ghost Variables:** A Streamlit dashboard allows managers to inject "invisible" context (e.g., "Competitor Price Cut") via temporary demand multipliers with **Auto-Expiry** to prevent stale configurations.
 
+## 🕹️ User Manual: The Operational Workflow
+
+How does a Store Manager use this tool to stop waste? 
+
+**The Scenario:** It's Tuesday. The AI predicts normal demand for *Fresh Milk* (50 units). However, the Store Manager knows a competitor across the street just slashed their milk prices by 50%. 
+
+If the manager does nothing, the store will order 50 units, sell only 10, and **waste 40 cartons**.
+
+### Step 1: Monitor (The Alert)
+The manager logs into the **Streamlit Dashboard**. They see the AI's baseline prediction (Gray Line) is consistent with historical trends, but they know external context is missing.
+
+### Step 2: Intervene (The Override)
+The manager selects "Fresh Milk" and uses the **Demand Multiplier Slider** to reduce the forecast to **0.5x** (50% reduction) for a duration of **3 Days**.
+* **Input:** `Multiplier = 0.5`, `Duration = 3 Days`
+* **Reason:** "Competitor Price Cut"
+* **Result:** The system immediately logs this override and updates the ordering quantity from 50 → 25.
+
+### Step 3: Feedback Loop (The Learning)
+This isn't just a manual fix; it's a data label. 
+1. The system captures the Manager's input as a new data point: `{"feature": "competitor_price_war", "impact": -0.5}`.
+2. In the next training cycle, the Data Science team uses these logs to justify purchasing a **Competitor Pricing API**.
+3. The model is retrained with this new feature, automating the detection of price wars in the future.
 ---
 
 ## 📂 Repository Structure
