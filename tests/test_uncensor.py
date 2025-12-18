@@ -59,4 +59,4 @@ def test_uncensoring_logic():
     # Day 2 Estimate = 1000 * 10% = 100
     # So the Adjusted Demand (100) should be greater than the Recorded Sales (10)
     assert adjusted_val > 10
-EOF
+
